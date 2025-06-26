@@ -66,14 +66,13 @@ function ProductItem({ product }: ProductItemDto) {
                 </div>
             </div>
             {
-                isShowFavorite && isFavorite ?
-                    <DialogFavorite /> : ''
+                isShowFavorite && isFavorite &&
+                    <DialogFavorite />
             }
             {
 
-                isCongratulation ?
+                isCongratulation &&
                     <DialogCongratulation title={'Add Product To Cart Successfully.'} setIsCongratulation={() => setIsCongratulation(prev => !prev)} icon={faCheck} iconClassName={`text-[50px] text-center mx-auto text-[#cf3bed]`} />
-                    : ''
             }
         </>
     )

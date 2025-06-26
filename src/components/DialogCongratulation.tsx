@@ -65,10 +65,10 @@ function DialogCongratulation({ title, iconClassName, setIsCongratulation, icon 
                         <div className={`w-[100px] h-[100px] mb-5 rounded-full mx-auto loader`}></div>
                 }
                 {
-                    isSuccess ?
+                    isSuccess &&
                         <div className='sm:text-3xl text-[26px] text-slate-700 text-center'>
                             {title}
-                        </div> : ''
+                        </div>
                 }
             </div>
         </div>

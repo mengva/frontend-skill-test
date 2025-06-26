@@ -11,6 +11,9 @@ function AppBar() {
 
     const navigate = useNavigate();
     const location = useLocation();
+    
+    const liClassName = "relative ml-auto w-14 h-14 hover:-translate-y-[1px] rounded-full flex justify-center items-center bg-slate-400/[.2] hover:bg-slate-400/[.4] cursor-pointer";
+    const iconClassName = "text-2xl text-slate-100 cursor-pointer";
 
     const [isTranslate, setIsTranslate] = useState(false);
     const [isUserAuth, setIsUserAuth] = useState(false);
@@ -65,28 +68,28 @@ function AppBar() {
                                 <input type="search" className='px-5 h-full w-full bg-slate-300 outline-none text-lg caret-[#cf3bed] text-[#cf3bed]' placeholder='Search...' />
                             </li> : ''
                         }
-                        <li onClick={handlerChangeIsDarkMode} className="relative ml-auto w-14 h-14 hover:-translate-y-[1px] rounded-full flex justify-center items-center bg-slate-400/[.2] hover:bg-slate-400/[.4] cursor-pointer">
+                        <li onClick={handlerChangeIsDarkMode} className={liClassName}>
                             {
                                 isDarkMode === "false" ?
-                                    <FontAwesomeIcon icon={faSun} className='text-2xl text-slate-100 cursor-pointer' />
+                                    <FontAwesomeIcon icon={faSun} className={iconClassName} />
                                     :
-                                    <FontAwesomeIcon icon={faMoon} className='text-2xl text-slate-100 cursor-pointer' />
+                                    <FontAwesomeIcon icon={faMoon} className={iconClassName} />
                             }
                         </li>
-                        <li onClick={() => setIsTranslate(prev => !prev)} className="relative ml-auto w-14 h-14 hover:-translate-y-[1px] rounded-full flex justify-center items-center bg-slate-400/[.2] hover:bg-slate-400/[.4] cursor-pointer">
-                            <FontAwesomeIcon icon={faCartShopping} className='text-2xl text-slate-100 cursor-pointer' />
+                        <li onClick={() => setIsTranslate(prev => !prev)} className={liClassName}>
+                            <FontAwesomeIcon icon={faCartShopping} className={iconClassName} />
                             <p className="absolute top-0 -right-3 w-auto px-2 h-6 bg-[#cf3bed] rounded-full cursor-pointer text-nowrap flex justify-center items-center text-slate-100">+5</p>
                         </li>
-                        <li onClick={handlerIsUserAuth} className="relative ml-auto w-14 h-14 hover:-translate-y-[1px] rounded-full flex justify-center items-center bg-slate-400/[.2] hover:bg-slate-400/[.4] cursor-pointer">
-                            <FontAwesomeIcon icon={faUser} className='text-2xl text-slate-100 cursor-pointer' />
+                        <li onClick={handlerIsUserAuth} className={liClassName}>
+                            <FontAwesomeIcon icon={faUser} className={iconClassName} />
                         </li>
                     </ul>
                 </div>
             </header>
             <ProductCart isTranslate={isTranslate} setIsTranslate={setIsTranslate} />
             {
-                isUserAuth ?
-                    <UserAuth handlerIsUserAuth={handlerIsUserAuth}/> : ''
+                isUserAuth &&
+                    <UserAuth handlerIsUserAuth={handlerIsUserAuth}/>
             }
         </>
     )

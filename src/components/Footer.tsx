@@ -194,10 +194,8 @@ function Footer() {
         <p className="text-slate-500 text-center pb-5">Copyright © 2025</p>
       </footer>
       {
-
-        isCongratulation ?
+        isCongratulation &&
           <DialogCongratulation title={'Congratulation?'} setIsCongratulation={handlerToggleIsCongratulation} icon={faCheck} iconClassName={`text-[50px] text-center mx-auto text-[#cf3bed]`} />
-          : ''
       }
     </>
   )

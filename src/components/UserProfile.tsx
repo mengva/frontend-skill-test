@@ -479,9 +479,9 @@ function UserProfile() {
             </div>
             {
 
-                isCongratulation ?
+                isCongratulation &&
                     <DialogCongratulation title={'Congratulation?'} setIsCongratulation={handlerToggleIsCongratulation} icon={faCheck} iconClassName={`text-[50px] text-center mx-auto text-[#cf3bed]`} />
-                    : ''
+                    
             }
         </>
     )

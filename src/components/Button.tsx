@@ -3,7 +3,7 @@ import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface ButtonDto {
-    type: unknown;
+    type: string;
     className: string;
     iconClassName: string;
     handlerSubmit: Function;
@@ -21,22 +21,22 @@ function Button({ type, className, iconClassName, handlerSubmit, title, icon, is
                 type === 'submit' ?
                     <button type={type} className={className}>
                         {
-                            isShowIcon ?
-                                <FontAwesomeIcon icon={icon} className={iconClassName} /> : ''
+                            isShowIcon &&
+                                <FontAwesomeIcon icon={icon} className={iconClassName} />
                         }
                         {
-                            isShowTitle ?
-                                <span>{title}</span> : ''
+                            isShowTitle &&
+                                <span>{title}</span>
                         }
                     </button>
-                    : <button type={type} onClick={(event) => handlerSubmit(event)} className={className}>
+                    : <button type={type} onClick={(event: React.FormEvent) => handlerSubmit(event)} className={className}>
                         {
-                            isShowIcon ?
-                                <FontAwesomeIcon icon={icon} className={iconClassName} /> : ''
+                            isShowIcon &&
+                                <FontAwesomeIcon icon={icon} className={iconClassName} />
                         }
                         {
-                            isShowTitle ?
-                                <span>{title}</span> : ''
+                            isShowTitle &&
+                                <span>{title}</span>
                         }
                     </button>
             }

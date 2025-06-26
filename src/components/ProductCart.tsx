@@ -88,19 +88,18 @@ function ProductCart({ isTranslate, setIsTranslate }: ProductCartDto) {
                 </div>
             </div>
             {
-                isShowDialog ?
+                isShowDialog &&
                     <Dialog
                         title={"Want to remove this item?"}
                         iconClose={faCancel}
                         iconConfirm={faCheck}
                         onClose={handlerClose}
-                        onConfirm={handlerConfirm} /> : ''
+                        onConfirm={handlerConfirm} />
             }
             {
 
-                isCongratulation ?
+                isCongratulation &&
                     <DialogCongratulation title={title} setIsCongratulation={handlerToggleIsCongratulation} icon={faCheck} iconClassName={`text-[50px] text-center mx-auto text-[#cf3bed]`} />
-                    : ''
             }
         </>
     )

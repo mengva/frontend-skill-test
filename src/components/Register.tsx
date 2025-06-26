@@ -197,9 +197,8 @@ function Signup() {
             </div>
             {
 
-                isCongratulation ?
+                isCongratulation &&
                     <DialogCongratulation title={'Congratulation?'} setIsCongratulation={() => setIsCongratulation(prev => !prev)} icon={faCheck} iconClassName={`text-[50px] text-center mx-auto text-[#cf3bed]`} />
-                    : ''
             }
         </>
     )
