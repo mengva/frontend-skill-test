@@ -1,8 +1,8 @@
 function DetailProduct() {
   return (
-    <div>
-        detail product page
-    </div>
+    <>
+    <div className="w-full h-screen bg-[#dddddd]"></div>
+    </>
   )
 }
 

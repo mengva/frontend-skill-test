@@ -3,6 +3,7 @@ import Home from "../pages/Home"
 import Profile from "../pages/Profile"
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Detail from "../pages/Detail";
 function Router() {
 
     return (
@@ -13,7 +14,7 @@ function Router() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/profile" element={<Profile />} />
-                    <Route path="/product/:id" element={<Profile />} />
+                    <Route path="/product/:id" element={<Detail />} />
                 </Routes>
             </BrowserRouter>
         </div>
