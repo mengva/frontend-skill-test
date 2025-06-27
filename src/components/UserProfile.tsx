@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
 import { faAppleAlt, faCheck, faMessage, faTools } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useState } from "react"
 import Image from "./Image";
@@ -41,114 +42,80 @@ function UserProfile() {
     const usePostalCodeElm = useRef<HTMLInputElement | null>(null);
     const useAboutMeElm = useRef<HTMLInputElement | null>(null);
 
+    const handlerSetValueBy = (useInputValue: { current: string }, setInput: Function, value: string) => {
+        useInputValue.current = value;
+        setInput(value);
+    }
+
     const handlerChangeInputEmailValue = (value: string) => {
-        useEmailValue.current = value;
-        setEmail(value);
+        handlerSetValueBy(useEmailValue, setEmail, value);
     }
 
     const handlerChangeInputUserNameValue = (value: string) => {
-        useUserNameValue.current = value;
-        setUserName(value);
+        handlerSetValueBy(useUserNameValue, setUserName, value);
     }
 
     const handlerChangeInputFirstNameValue = (value: string) => {
-        useFirstNameValue.current = value;
-        setFirstName(value);
+        handlerSetValueBy(useFirstNameValue, setFirstName, value);
     }
 
     const handlerChangeInputLastNameValue = (value: string) => {
-        useLastNameValue.current = value;
-        setLastName(value);
+        handlerSetValueBy(useLastNameValue, setLastName, value);
     }
 
     const handlerChangeInputCityValue = (value: string) => {
-        useCityValue.current = value;
-        setCity(value);
+        handlerSetValueBy(useCityValue, setCity, value);
     }
 
     const handlerChangeInputAddressValue = (value: string) => {
-        useAddressValue.current = value;
-        setAddress(value);
+        handlerSetValueBy(useAddressValue, setAddress, value);
     }
 
     const handlerChangeInputCountryValue = (value: string) => {
-        useCountryValue.current = value;
-        setCountry(value);
+        handlerSetValueBy(useCountryValue, setCountry, value);
     }
 
     const handlerChangeInputPostalCodeValue = (value: string) => {
-        usePostalCodeValue.current = value;
-        setPostalCode(value);
+        handlerSetValueBy(usePostalCodeValue, setPostalCode, value);
     }
 
     const handlerChangeInputAboutMeValue = (value: string) => {
-        useAboutMeValue.current = value;
-        setAboutMe(value);
+        handlerSetValueBy(useAboutMeValue, setAboutMe, value);
+    }
+
+    const handlerSetCheckConditionInputEmptyBy = (useInputElm: React.RefObject<HTMLInputElement | null>,) => {
+        setIsCongratulation(false);
+        useInputElm.current?.focus();
+        handlerIsSubmitAndIsSuccess(false);
     }
 
     const handlerCheckConditionInputEmpty = () => {
-        if (!email) {
-            setIsCongratulation(false);
-            useEmailElm.current?.focus();
-            handlerIsSubmitAndIsSuccess(false);
-            return;
-        }
+        if (!email)
+            return handlerSetCheckConditionInputEmptyBy(useEmailElm);
 
-        if (!userName) {
-            setIsCongratulation(false);
-            useUserNameElm.current?.focus();
-            handlerIsSubmitAndIsSuccess(false);
-            return;
-        }
+        if (!userName)
+            return handlerSetCheckConditionInputEmptyBy(useUserNameElm);
 
-        if (!firstName) {
-            setIsCongratulation(false);
-            useFirstNameElm.current?.focus();
-            handlerIsSubmitAndIsSuccess(false);
-            return;
-        }
+        if (!firstName)
+            return handlerSetCheckConditionInputEmptyBy(useFirstNameElm);
 
-        if (!lastName) {
-            setIsCongratulation(false);
-            useLastNameElm.current?.focus();
-            handlerIsSubmitAndIsSuccess(false);
-            return;
-        }
+        if (!lastName)
+            return handlerSetCheckConditionInputEmptyBy(useLastNameElm);
 
-        if (!address) {
-            setIsCongratulation(false);
-            useAddressElm.current?.focus();
-            handlerIsSubmitAndIsSuccess(false);
-            return;
-        }
+        if (!address)
+            return handlerSetCheckConditionInputEmptyBy(useAddressElm);
 
-        if (!city) {
-            setIsCongratulation(false);
-            useCityElm.current?.focus();
-            handlerIsSubmitAndIsSuccess(false);
-            return;
-        }
+        if (!city)
+            return handlerSetCheckConditionInputEmptyBy(useCityElm);
 
-        if (!country) {
-            setIsCongratulation(false);
-            useCountryElm.current?.focus();
-            handlerIsSubmitAndIsSuccess(false);
-            return;
-        }
+        if (!country)
+            return handlerSetCheckConditionInputEmptyBy(useCountryElm);
 
-        if (!postalCode) {
-            setIsCongratulation(false);
-            usePostalCodeElm.current?.focus();
-            handlerIsSubmitAndIsSuccess(false);
-            return;
-        }
+        if (!postalCode)
+            return handlerSetCheckConditionInputEmptyBy(usePostalCodeElm);
 
-        if (!aboutMe) {
-            setIsCongratulation(false);
-            useAboutMeElm.current?.focus();
-            handlerIsSubmitAndIsSuccess(false);
-            return;
-        }
+        if (!aboutMe)
+            return handlerSetCheckConditionInputEmptyBy(useAboutMeElm);
 
         setIsCongratulation(true);
         handlerIsSubmitAndIsSuccess(true);
@@ -159,7 +126,7 @@ function UserProfile() {
         setIsSubmitError(!isSuccess);
         setIsSubmitSuccess(isSuccess);
 
-        if(!isSuccess) return;
+        if (!isSuccess) return;
 
         const clear = setTimeout(() => {
             setIsSubmitError(false);
@@ -480,8 +447,8 @@ function UserProfile() {
             {
 
                 isCongratulation &&
-                    <DialogCongratulation title={'Congratulation?'} setIsCongratulation={handlerToggleIsCongratulation} icon={faCheck} iconClassName={`text-[50px] text-center mx-auto text-[#cf3bed]`} />
-                    
+                <DialogCongratulation title={'Congratulation?'} setIsCongratulation={handlerToggleIsCongratulation} icon={faCheck} iconClassName={`text-[50px] text-center mx-auto text-[#cf3bed]`} />
+
             }
         </>
     )

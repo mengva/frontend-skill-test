@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 
@@ -15,7 +14,6 @@ function DialogCongratulation({ title, iconClassName, setIsCongratulation, icon 
 
     const [isLoading, setIsLoading] = useState(true);
     const [isSuccess, setIsSuccess] = useState(false);
-    const containerElem = useRef<HTMLDivElement>(null);
 
     function handlerIsLoading() {
         return setTimeout(() => {
@@ -36,12 +34,6 @@ function DialogCongratulation({ title, iconClassName, setIsCongratulation, icon 
         }, 800);
     }
 
-    function handlerClose(event: never) {
-        if (event['target'] === containerElem.current) {
-            setIsCongratulation();
-        }
-    }
-
     useEffect(() => {
         const clear = handlerIsLoading();
         const clear1 = handlerCloseCongratulation();
@@ -55,7 +47,7 @@ function DialogCongratulation({ title, iconClassName, setIsCongratulation, icon 
     }, []);
 
     return (
-        <div ref={containerElem} onClick={handlerClose} className={`fixed z-[99] flex inset-0 w-full h-full ${isLoading ? 'scale-[1.2]' : 'scale-100'} bg-slate-600/80`}>
+        <div className={`fixed z-[99] flex inset-0 w-full h-full ${isLoading ? 'scale-[1.2]' : 'scale-100'} bg-slate-600/80`}>
             <div className={`sm:w-[550px] w-[95%] m-auto bg-slate-100 rounded-[3rem] px-6 py-10 ${isLoading ? 'translate-y-5 opacity-0' : ''}`}>
                 {
                     isSuccess ?
@@ -66,9 +58,9 @@ function DialogCongratulation({ title, iconClassName, setIsCongratulation, icon 
                 }
                 {
                     isSuccess &&
-                        <div className='sm:text-3xl text-[26px] text-slate-700 text-center'>
-                            {title}
-                        </div>
+                    <div className='sm:text-3xl text-[26px] text-slate-700 text-center'>
+                        {title}
+                    </div>
                 }
             </div>
         </div>

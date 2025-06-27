@@ -14,7 +14,6 @@ function Products() {
         try {
             const { data } = await Axios.get("/products");
             setProducts(data?.products);
-            console.log(data.products);
         } catch (error: ErrorEvent | unknown) {
             throw new Error("faild to fetching", error);
         }
