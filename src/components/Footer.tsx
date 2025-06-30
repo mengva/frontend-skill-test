@@ -2,13 +2,15 @@ import { faCheck, faEnvelope, faLanguage, faMessage, faPhone, faSignIn, faUser }
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Image from "./Image"
 import Button from "./Button"
-import { useRef, useState } from "react"
+import { useContext, useRef, useState } from "react"
 import Input from "./Input"
 import DialogCongratulation from "./DialogCongratulation"
 import { emailFormatter } from "../util/EmailFormatter"
+import { UserThemeContext } from "../router/Router"
 
 function Footer() {
 
+  const { theme } = useContext(UserThemeContext) as never;
   const [email, setEmail] = useState("");
   const [isCongratulation, setIsCongratulation] = useState(false);
   const [isSubmitError, setIsSubmitError] = useState(false);
@@ -44,7 +46,7 @@ function Footer() {
     setIsSubmitError(!isSuccess);
     setIsSubmitSuccess(isSuccess);
 
-    if(!isSuccess) return;
+    if (!isSuccess) return;
 
     const clear = setTimeout(() => {
       setIsSubmitError(false);
@@ -60,40 +62,40 @@ function Footer() {
 
   return (
     <>
-      <footer className="mt-16 w-full bg-slate-100 px-5 md:px-10">
+      <footer className={`${theme === 'dark' ? 'bg-slate-950' : 'bg-slate-100'} mt-16 w-full px-5 md:px-10`}>
         <div className="py-20">
           <div className="max-w-[1600px] mx-auto">
             <div className="grid gap-y-16 xl:grid-cols-4 md:grid-cols-2">
-              <div className="w-full max-md:border-b-[1px] max-md:border-b-slate-400 max-md:pb-5">
+              <div className={`w-full max-md:border-b-[1px] ${theme === 'dark' ? 'max-md:border-b-slate-600' : 'max-md:border-b-slate-400'} max-md:pb-5`}>
 
                 <div className="flex gap-x-4 mb-4">
-                  <FontAwesomeIcon icon={faMessage} className="text-xl text-[#196c62]" />
-                  <span className="text-xl text-[#196c62] font-semibold">Contact with me!</span>
+                  <FontAwesomeIcon icon={faMessage} className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'}`} />
+                  <span className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} font-semibold`}>Contact with me!</span>
                 </div>
 
                 <div className="flex gap-x-4 mb-4">
-                  <FontAwesomeIcon icon={faPhone} className="text-xl text-[#196c62]" />
-                  <span className="text-xl text-[#196c62] font-semibold">+8562057364321</span>
+                  <FontAwesomeIcon icon={faPhone} className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'}`} />
+                  <span className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} font-semibold`}>+8562057364321</span>
                 </div>
 
                 <div className="flex gap-x-4 mb-16">
-                  <FontAwesomeIcon icon={faEnvelope} className="text-xl text-[#196c62]" />
-                  <span className="text-xl text-[#196c62] font-semibold">mengvaprogamemin@gmail.com</span>
+                  <FontAwesomeIcon icon={faEnvelope} className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'}`} />
+                  <span className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} font-semibold`}>mengvaprogamemin@gmail.com</span>
                 </div>
 
               </div>
 
-              <div className="w-full max-md:border-b-[1px] max-md:border-b-slate-400 max-md:pb-5">
+              <div className={`w-full max-md:border-b-[1px] ${theme === 'dark' ? 'max-md:border-b-slate-600' : 'max-md:border-b-slate-400'} max-md:pb-5`}>
 
                 <div className="flex gap-x-4 mb-4">
-                  <FontAwesomeIcon icon={faUser} className="text-xl text-[#196c62]" />
-                  <span className="text-xl text-[#196c62] font-semibold">Personal</span>
+                  <FontAwesomeIcon icon={faUser} className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'}`} />
+                  <span className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} font-semibold`}>Personal</span>
                 </div>
 
                 <ul>
-                  <li className="mb-2 text-md text-slate-600 font-semibold">Name: mengva chuepor</li>
-                  <li className="mb-2 text-md text-slate-600 font-semibold">Age: 21</li>
-                  <li className="mb-2 text-md text-slate-600 font-semibold">Address: Dongdok, xaithani, vientiane capital</li>
+                  <li className={`${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'} mb-2 text-md font-semibold`}>Name: mengva chuepor</li>
+                  <li className={`${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'} mb-2 text-md font-semibold`}>Age: 21</li>
+                  <li className={`${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'} mb-2 text-md font-semibold`}>Address: Dongdok, xaithani, vientiane capital</li>
                 </ul>
 
                 <div className="flex gap-x-4 mt-10">
@@ -110,58 +112,58 @@ function Footer() {
 
               </div>
 
-              <div className="w-full max-md:border-b-[1px] max-md:border-b-slate-400 max-md:pb-5">
+              <div className={`w-full max-md:border-b-[1px] ${theme === 'dark' ? 'max-md:border-b-slate-600' : 'max-md:border-b-slate-400'} max-md:pb-5`}>
 
                 <div className="flex gap-x-4 mb-4">
-                  <FontAwesomeIcon icon={faLanguage} className="text-xl text-[#196c62]" />
-                  <span className="text-xl text-[#196c62] font-semibold">Language</span>
+                  <FontAwesomeIcon icon={faLanguage} className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'}`} />
+                  <span className={`${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} text-xl font-semibold`}>Language</span>
                 </div>
 
                 <div className="mb-4">
-                  <h1 className="text-xl text-[#196c62] font-semibold underline">Frontend</h1>
+                  <h1 className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} font-semibold underline`}>Frontend</h1>
                 </div>
 
                 <ul className="pl-5">
-                  <li style={{ listStyleType: "circle" }} className="mb-2 text-md text-slate-600 font-semibold">Basic: HTML, CSS AND JAVASCRIPT</li>
-                  <li style={{ listStyleType: "circle" }} className="mb-2 text-md text-slate-600 font-semibold">Library: TailwindCSS, Bootstrap,...</li>
-                  <li style={{ listStyleType: "circle" }} className="mb-2 text-md text-slate-600 font-semibold">Framework: Vue.js, React.js,...</li>
+                  <li style={{ listStyleType: "circle" }} className={`${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'} mb-2 text-md font-semibold`}>Basic: HTML, CSS AND JAVASCRIPT</li>
+                  <li style={{ listStyleType: "circle" }} className={`${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'} mb-2 text-md font-semibold`}>Library: TailwindCSS, Bootstrap,...</li>
+                  <li style={{ listStyleType: "circle" }} className={`${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'} mb-2 text-md font-semibold`}>Framework: Vue.js, React.js,...</li>
                 </ul>
 
                 <div className="mb-4">
-                  <h1 className="text-xl text-[#196c62] font-semibold underline">Backend</h1>
+                  <h1 className={`${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} text-xl font-semibold underline`}>Backend</h1>
                 </div>
 
                 <ul className="pl-5">
-                  <li style={{ listStyleType: "circle" }} className="mb-2 text-md text-slate-600 font-semibold">Node.js, Express.js, Nest.js</li>
+                  <li style={{ listStyleType: "circle" }} className={`${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'} mb-2 text-md font-semibold`}>Node.js, Express.js, Nest.js</li>
                 </ul>
 
                 <div className="mb-4">
-                  <h1 className="text-xl text-[#196c62] font-semibold underline">Database</h1>
+                  <h1 className={`${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} text-xl font-semibold underline`}>Database</h1>
                 </div>
 
                 <ul className="pl-5">
-                  <li style={{ listStyleType: "circle" }} className="mb-2 text-md text-slate-600 font-semibold">Mysql, Postgresql, Laragon,...</li>
+                  <li style={{ listStyleType: "circle" }} className={`${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'} mb-2 text-md font-semibold`}>Mysql, Postgresql, Laragon,...</li>
                 </ul>
 
                 <div className="mb-4">
-                  <h1 className="text-xl text-[#196c62] font-semibold underline">Design UX/UI, Tools, Testing</h1>
+                  <h1 className={`${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} text-xl font-semibold underline`}>Design UX/UI, Tools, Testing</h1>
                 </div>
 
                 <ul className="pl-5">
-                  <li style={{ listStyleType: "circle" }} className="mb-2 text-md text-slate-600 font-semibold">Figma, Github, Postman...</li>
+                  <li style={{ listStyleType: "circle" }} className={`${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'} mb-2 text-md font-semibold`}>Figma, Github, Postman...</li>
                 </ul>
 
               </div>
 
-              <div className="w-full max-md:border-b-[1px] max-md:border-b-slate-400 max-md:pb-5">
+              <div className={`w-full max-md:border-b-[1px] ${theme === 'dark' ? 'max-md:border-b-slate-600' : 'max-md:border-b-slate-400'} max-md:pb-5`}>
 
                 <div className="flex gap-x-4 mb-4">
-                  <FontAwesomeIcon icon={faUser} className="text-xl text-[#196c62]" />
-                  <h1 className="text-xl text-[#196c62] font-semibold">Signin With Me.</h1>
+                  <FontAwesomeIcon icon={faUser} className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'}`} />
+                  <h1 className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} font-semibold`}>Signin With Me.</h1>
                 </div>
 
                 <Input
-                  className={`w-full h-[60px] rounded-2xl mt-4 border-none outline-none px-5 caret-[#cf3bed] text-lg text-[#cf3bed] bg-white`}
+                  className={`w-full h-[60px] rounded-2xl mt-4 border-none outline-none px-5 caret-[#cf3bed] text-lg text-[#cf3bed] ${theme === 'dark' ? 'bg-slate-800 hover:bg-slate-700 caret-slate-300 text-slate-300' : 'bg-white hover:bg-slate-50 caret-slate-600 text-slate-600'}`}
                   readOnly={false}
                   disable={false}
                   type={'email'}
@@ -191,11 +193,11 @@ function Footer() {
             </div>
           </div>
         </div>
-        <p className="text-slate-500 text-center pb-5">Copyright © 2025</p>
+        <p className={`${theme === 'dark' ? 'text-slate-300' : 'text-slate-500'} text-center pb-5`}>Copyright © 2025</p>
       </footer>
       {
         isCongratulation &&
-          <DialogCongratulation title={'Congratulation?'} setIsCongratulation={handlerToggleIsCongratulation} icon={faCheck} iconClassName={`text-[50px] text-center mx-auto text-[#cf3bed]`} />
+        <DialogCongratulation title={'Congratulation?'} setIsCongratulation={handlerToggleIsCongratulation} icon={faCheck} iconClassName={`text-[50px] text-center mx-auto text-[#cf3bed]`} />
       }
     </>
   )

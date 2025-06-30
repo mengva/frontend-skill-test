@@ -1,11 +1,15 @@
 import { faArrowLeft, faCheck, faSignIn } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import Input from './Input';
 import Button from './Button';
 import DialogCongratulation from './DialogCongratulation';
+import { UserThemeContext } from '../router/Router';
 
 function Signin() {
+
+    const { theme } = useContext(UserThemeContext) as never;
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(true);
@@ -78,7 +82,7 @@ function Signin() {
         setIsSubmitError(!isSuccess);
         setIsSubmitSuccess(isSuccess);
 
-        if(!isSuccess) return;
+        if (!isSuccess) return;
 
         const clear = setTimeout(() => {
             setIsSubmitError(false);
@@ -98,11 +102,11 @@ function Signin() {
 
     return (
         <>
-            <div className={`w-full h-screen py-6 bg-white fixed top-0 left-0 ${isLoading ? 'scale-[1.2] opacity-0' : ''}`}>
+            <div className={`w-full h-screen py-6 ${theme === 'dark' ? 'bg-slate-900' : 'bg-white'} fixed top-0 left-0 ${isLoading ? 'scale-[1.2] opacity-0' : ''}`}>
                 <div className='absolute left-2 top-2 z-[1]'>
                     <Button
                         type={'button'}
-                        className={'h-[55px] w-[55px] rounded-2xl bg-slate-300 hover:bg-slate-200 text-xl text-slate-500'}
+                        className={`h-[55px] w-[55px] rounded-2xl grid place-content-center ${theme === 'dark' ? 'bg-slate-800 hover:bg-slate-700' : 'bg-slate-300 hover:bg-slate-200'} text-xl text-slate-500`}
                         iconClassName={'text-xl'}
                         handlerSubmit={() => navigate("/")}
                         title={""}
@@ -114,12 +118,12 @@ function Signin() {
                 <div className="fixed top-0 left-0 w-full h-full">
                     <div className="flex lg:flex-row flex-col justify-center items-center h-full sm:p-4">
                         <div className="block w-[80%] sm:w-[350px] mx-auto">
-                            <h1 className="mb-3 text-2xl font-bold text-slate-700">Login</h1>
-                            <p className="text-lg mb-6 text-slate-500">Enter your email and password to Login</p>
+                            <h1 className={`mb-3 text-2xl font-bold ${theme === 'dark' ? 'text-slate-300' : 'text-slate-700'}`}>Login</h1>
+                            <p className={`text-lg mb-6 ${theme === 'dark' ? 'text-slate-300' : 'text-slate-500'}`}>Enter your email and password to Login</p>
                             <form onSubmit={handlerSubmitForm} className="w-full">
                                 <label htmlFor="email" className="block mb-6">
                                     <Input
-                                        className={`block h-[60px] w-full px-4 bg-slate-100 hover:bg-slate-200 caret-slate-600 text-slate-600 rounded-xl`}
+                                        className={`block h-[60px] w-full px-4 ${theme === 'dark' ? 'bg-slate-800 hover:bg-slate-700 caret-slate-300 text-slate-300' : 'bg-slate-100 hover:bg-slate-200 caret-slate-600 text-slate-600'} rounded-xl`}
                                         readOnly={false}
                                         disable={false}
                                         type={'email'}
@@ -136,7 +140,7 @@ function Signin() {
                                 </label>
                                 <label htmlFor="password" className="block">
                                     <Input
-                                        className={`block h-[60px] w-full px-4 bg-slate-100 hover:bg-slate-200 caret-slate-600 text-slate-600 rounded-xl`}
+                                        className={`block h-[60px] w-full px-4 ${theme === 'dark' ? 'bg-slate-800 hover:bg-slate-700 caret-slate-300 text-slate-300' : 'bg-slate-100 hover:bg-slate-200 caret-slate-600 text-slate-600'} rounded-xl`}
                                         readOnly={false}
                                         disable={false}
                                         type={'password'}
@@ -153,10 +157,10 @@ function Signin() {
                                 </label>
                                 <div className="flex items-center gap-2 mt-6">
                                     <div className="inline-block w-[40px] h-[20px] relative">
-                                        <input className="input-checkbox appearance-none w-[100%] h-[100%] bg-gray-200 rounded-2xl cursor-pointer relative" type="checkbox" name="checkbox1" id="checkbox1" />
-                                        <label className="absolute w-[18px] h-[18px] rounded-full bg-white top-1/2 left-[1px] shadow-sm cursor-pointer -translate-y-1/2" htmlFor="checkbox1"></label>
+                                        <input className={`input-checkbox appearance-none w-[100%] h-[100%] ${theme === 'dark' ? 'bg-slate-800' : 'bg-slate-200'} rounded-2xl cursor-pointer relative`} type="checkbox" name="checkbox1" id="checkbox1" />
+                                        <label className={`absolute w-[18px] h-[18px] rounded-full ${theme === 'dark' ? 'bg-slate-300' : 'bg-white'} top-1/2 left-[1px] shadow-sm cursor-pointer -translate-y-1/2`} htmlFor="checkbox1"></label>
                                     </div>
-                                    <p className="text-slate-500">Remember me</p>
+                                    <p className={`${theme === 'dark' ? 'text-slate-300' : 'text-slate-500'}`}>Remember me</p>
                                 </div>
                                 <Button
                                     type={'submit'}
@@ -168,13 +172,13 @@ function Signin() {
                                     isShowIcon={true}
                                     isShowTitle={true}
                                 />
-                                <p className="text-center mt-6 text-slate-500">Dont`t have an account? <span><Link to='/register' className="text-[#b535cf] cursor-pointer">Register</Link></span></p>
+                                <p className={`text-center mt-6 ${theme === 'dark' ? 'text-slate-300' : 'text-slate-500'}`}>Dont`t have an account? <span><Link to='/register' className="text-[#b535cf] cursor-pointer">Register</Link></span></p>
                             </form>
                         </div>
                         <div className="rounded-xl hidden overflow-hidden lg:block text-center w-1/2 h-full bg-top bg-cover bg-no-repeat bg-[url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg')]">
                             <div className="flex p-[6rem] justify-center items-center flex-col bg-gradient-to-r from-teal-500/[.5] to-green-400/[.5] w-full h-full">
-                                <h1 className="text-3xl font-bold text-white drop-shadow-md mb-4">"Attention is the new currency"</h1>
-                                <p className="text-slate-100 text-lg drop-shadow-sm">The more effortless the writing looks, the more effort the writer actually put into the process.</p>
+                                <h1 className={`text-3xl font-bold ${theme === 'dark' ? 'text-slate-100' : 'text-white'} drop-shadow-md mb-4`}>"Attention is the new currency"</h1>
+                                <p className={`text-slate-100 text-lg drop-shadow-sm`}>The more effortless the writing looks, the more effort the writer actually put into the process.</p>
                             </div>
                         </div>
                     </div>
@@ -184,7 +188,7 @@ function Signin() {
             {
 
                 isCongratulation &&
-                    <DialogCongratulation title={'Congratulation?'} setIsCongratulation={handlerToggleIsCongratulation} icon={faCheck} iconClassName={`text-[50px] text-center mx-auto text-[#cf3bed]`} />
+                <DialogCongratulation title={'Congratulation?'} setIsCongratulation={handlerToggleIsCongratulation} icon={faCheck} iconClassName={`text-[50px] text-center mx-auto text-[#cf3bed]`} />
             }
         </>
     )

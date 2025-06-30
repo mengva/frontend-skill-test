@@ -1,6 +1,10 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { UserThemeContext } from "../router/Router";
 
 function Loading() {
+
+    const { theme } = useContext(UserThemeContext) as never;
+
     const [isLoading, setIsLoading] = useState(true);
 
     function handlerIsLoading() {
@@ -20,7 +24,7 @@ function Loading() {
     return (
         <div className={`fixed z-[99] inset-0 w-full h-full ${isLoading ? 'scale-[1.2]' : 'scale-100'} bg-slate-600/80`}>
             <div className="flex w-full h-full">
-                <div className={`sm:w-[450px] w-[95%] m-auto bg-slate-100 rounded-[2rem] py-6 flex ${isLoading ? 'translate-y-5 opacity-0' :  ''}`}>
+                <div className={`sm:w-[450px] w-[95%] m-auto ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-100'} rounded-[2rem] py-6 flex ${isLoading ? 'translate-y-5 opacity-0' : ''}`}>
                     <div className='loader mx-auto'></div>
                 </div>
             </div>

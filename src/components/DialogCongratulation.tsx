@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { UserThemeContext } from "../router/Router";
 
 interface DialogCongratulationDto {
     title: string;
@@ -12,6 +13,7 @@ interface DialogCongratulationDto {
 
 function DialogCongratulation({ title, iconClassName, setIsCongratulation, icon }: DialogCongratulationDto) {
 
+    const { theme } = useContext(UserThemeContext) as never;
     const [isLoading, setIsLoading] = useState(true);
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -48,7 +50,7 @@ function DialogCongratulation({ title, iconClassName, setIsCongratulation, icon 
 
     return (
         <div className={`fixed z-[99] flex inset-0 w-full h-full ${isLoading ? 'scale-[1.2]' : 'scale-100'} bg-slate-600/80`}>
-            <div className={`sm:w-[550px] w-[95%] m-auto bg-slate-100 rounded-[3rem] px-6 py-10 ${isLoading ? 'translate-y-5 opacity-0' : ''}`}>
+            <div className={`sm:w-[550px] w-[95%] m-auto ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-100'} rounded-[3rem] px-6 py-10 ${isLoading ? 'translate-y-5 opacity-0' : ''}`}>
                 {
                     isSuccess ?
                         <div className={`${isSuccess ? 'scale-100' : 'scale-[.5] translate-y-10'} w-[100px] h-[100px] grid place-content-center mb-5 rounded-full mx-auto`}>
@@ -58,7 +60,7 @@ function DialogCongratulation({ title, iconClassName, setIsCongratulation, icon 
                 }
                 {
                     isSuccess &&
-                    <div className='sm:text-3xl text-[26px] text-slate-700 text-center'>
+                    <div className={`sm:text-3xl text-[26px] ${theme === 'dark' ? 'text-slate-300' : 'text-slate-700'} text-center`}>
                         {title}
                     </div>
                 }

@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { UserThemeContext } from "../router/Router";
 
 interface DialogDto {
     title: string;
@@ -13,6 +14,7 @@ interface DialogDto {
 
 function Dialog({ title, iconClose, iconConfirm, onClose, onConfirm }: DialogDto) {
 
+    const { theme } = useContext(UserThemeContext) as never;
     const [isLoading, setIsLoading] = useState(true);
 
     const containerElem = useRef<HTMLDivElement>(null)
@@ -44,8 +46,8 @@ function Dialog({ title, iconClose, iconConfirm, onClose, onConfirm }: DialogDto
     return (
         <>
         <div ref={containerElem} onClick={handlerClose} className={`fixed z-[99] flex inset-0 w-full h-full ${isLoading ? 'scale-[1.2]' : 'scale-100'} bg-slate-600/80`}>
-            <div className={`sm:w-[550px] w-[95%] m-auto bg-slate-100 rounded-[3rem] px-6 py-10 ${isLoading ? 'translate-y-5 opacity-0' : ''}`}>
-                <div className='sm:text-3xl text-[26px] text-slate-700 text-center font-semibold'>
+            <div className={`sm:w-[550px] w-[95%] m-auto ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-100'} rounded-[3rem] px-6 py-10 ${isLoading ? 'translate-y-5 opacity-0' : ''}`}>
+                <div className={`sm:text-3xl text-[26px] ${theme === 'dark' ? 'text-slate-300' : 'text-slate-700'} text-center font-semibold`}>
                     {title}
                 </div>
                 <div className="flex gap-x-2 mt-8">

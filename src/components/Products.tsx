@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import ProductItem from "./ProductItem";
 import Loading from "./Loading";
 import Axios from "../config/Axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { UserThemeContext } from "../router/Router";
 
 function Products() {
 
+    const {theme} = useContext(UserThemeContext) as never;
     const [products, setProducts] = useState([]);
     const [resize, setResize] = useState(window.innerWidth);
 
@@ -45,15 +47,15 @@ function Products() {
                 <div className="text-center text-4xl font-bold text-[#cf3bed] underline">Our products</div>
 
                 {
-                    resize < 720 ?
+                    resize < 720 &&
                         <div className="p-5 mt-10">
-                            <div className='my-auto w-[auto] h-[60px] bg-slate-300 hover:-translate-y-[1px] flex items-center rounded-3xl overflow-hidden'>
-                                <button type="button" className='w-[50px] h-[50px] flex bg-slate-300'>
+                            <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-slate-300'} my-auto w-[auto] h-[60px] hover:-translate-y-[1px] flex items-center rounded-3xl overflow-hidden`}>
+                                <button type="button" className={`w-[60px] h-[60px] flex ${theme === 'dark' ? 'bg-slate-800 hover:bg-slate-700' : 'bg-slate-300'}`}>
                                     <FontAwesomeIcon icon={faSearch} className='text-[#289157] m-auto text-xl' />
                                 </button>
-                                <input type="search" className='px-5 h-full w-full bg-slate-300 outline-none text-lg caret-[#cf3bed] text-[#cf3bed]' placeholder='Search something...' />
+                                <input type="search" className={`px-5 h-full w-full ${theme === 'dark' ? 'bg-slate-800 hover:bg-slate-700' : 'bg-slate-300'} outline-none text-lg caret-[#cf3bed] text-[#cf3bed]`} placeholder='Search something...' />
                             </div>
-                        </div> : ''
+                        </div>
                 }
 
                 <div className="w-full mt-16">

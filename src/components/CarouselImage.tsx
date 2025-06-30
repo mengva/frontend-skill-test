@@ -1,10 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { carouselImageList } from '../util/CarouselImages';
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback, useContext } from 'react';
 import Image from './Image';
+import { UserThemeContext } from '../router/Router';
 
 function CarouselImage() {
+
+    const {theme} = useContext(UserThemeContext) as never;
+    
     const imageIndex = useRef(0);
     const containerImageElem = useRef<HTMLDivElement>(null);
 
@@ -65,7 +69,7 @@ function CarouselImage() {
             <button
                 type="button"
                 onClick={() => handlerChangeCarousel(-1)}
-                className="z-[1] absolute left-0 top-1/2 -translate-y-1/2 text-slate-500 shadow-md cursor-pointer w-[35px] md:w-[40px] h-[80px] md:h-[100px] hover:bg-slate-200 hover:w-[65px] active:bg-slate-300 outline-none border-none bg-slate-100 rounded-r-[50px]"
+                className={`z-[1] absolute left-0 top-1/2 -translate-y-1/2 text-slate-500 shadow-md cursor-pointer w-[35px] md:w-[40px] h-[80px] md:h-[100px] hover:w-[65px] ${theme === 'dark' ? 'active:bg-slate-900 outline-none border-none bg-slate-900 hover:bg-slate-800' : 'active:bg-slate-300 outline-none border-none bg-slate-100 hover:bg-slate-200'} rounded-r-[50px]`}
             >
                 <FontAwesomeIcon icon={faArrowLeft} className='text-xl' />
             </button>
@@ -74,7 +78,7 @@ function CarouselImage() {
             <button
                 type="button"
                 onClick={() => handlerChangeCarousel(1)}
-                className="z-[1] absolute right-0 top-1/2 -translate-y-1/2 text-slate-500 shadow-md cursor-pointer w-[35px] md:w-[40px] h-[80px] md:h-[100px] hover:bg-slate-200 hover:w-[65px] active:bg-slate-300 outline-none border-none bg-slate-100 rounded-l-[50px]"
+                className={`z-[1] absolute right-0 top-1/2 -translate-y-1/2 text-slate-500 shadow-md cursor-pointer w-[35px] md:w-[40px] h-[80px] md:h-[100px] hover:w-[65px] ${theme === 'dark' ? 'active:bg-slate-900 outline-none border-none bg-slate-900 hover:bg-slate-800' : 'active:bg-slate-300 outline-none border-none bg-slate-100 hover:bg-slate-200'} rounded-l-[50px]`}
             >
                 <FontAwesomeIcon icon={faArrowRight} className='text-xl' />
             </button>
