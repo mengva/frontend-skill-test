@@ -2,7 +2,7 @@ import { faCheck, faEnvelope, faLanguage, faMessage, faPhone, faSignIn, faUser }
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Image from "./Image"
 import Button from "./Button"
-import { useContext, useRef, useState } from "react"
+import { useCallback, useContext, useRef, useState } from "react"
 import Input from "./Input"
 import DialogCongratulation from "./DialogCongratulation"
 import { emailFormatter } from "../util/EmailFormatter"
@@ -42,6 +42,10 @@ function Footer() {
     useEmail.current = '';
   }
 
+  const isActiveClassName = useCallback(() => {
+    return theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]';
+  }, [theme]);
+
   const handlerIsSubmitAndIsSuccess = (isSuccess: boolean) => {
     setIsSubmitError(!isSuccess);
     setIsSubmitSuccess(isSuccess);
@@ -69,18 +73,18 @@ function Footer() {
               <div className={`w-full max-md:border-b-[1px] ${theme === 'dark' ? 'max-md:border-b-slate-600' : 'max-md:border-b-slate-400'} max-md:pb-5`}>
 
                 <div className="flex gap-x-4 mb-4">
-                  <FontAwesomeIcon icon={faMessage} className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'}`} />
-                  <span className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} font-semibold`}>Contact with me!</span>
+                  <FontAwesomeIcon icon={faMessage} className={`text-xl ${isActiveClassName}`} />
+                  <span className={`text-xl ${isActiveClassName} font-semibold`}>Contact with me!</span>
                 </div>
 
                 <div className="flex gap-x-4 mb-4">
-                  <FontAwesomeIcon icon={faPhone} className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'}`} />
-                  <span className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} font-semibold`}>+8562057364321</span>
+                  <FontAwesomeIcon icon={faPhone} className={`text-xl ${isActiveClassName}`} />
+                  <span className={`text-xl ${isActiveClassName} font-semibold`}>+8562057364321</span>
                 </div>
 
                 <div className="flex gap-x-4 mb-16">
-                  <FontAwesomeIcon icon={faEnvelope} className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'}`} />
-                  <span className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} font-semibold`}>mengvaprogamemin@gmail.com</span>
+                  <FontAwesomeIcon icon={faEnvelope} className={`text-xl ${isActiveClassName}`} />
+                  <span className={`text-xl ${isActiveClassName} font-semibold`}>mengvaprogamemin@gmail.com</span>
                 </div>
 
               </div>
@@ -88,8 +92,8 @@ function Footer() {
               <div className={`w-full max-md:border-b-[1px] ${theme === 'dark' ? 'max-md:border-b-slate-600' : 'max-md:border-b-slate-400'} max-md:pb-5`}>
 
                 <div className="flex gap-x-4 mb-4">
-                  <FontAwesomeIcon icon={faUser} className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'}`} />
-                  <span className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} font-semibold`}>Personal</span>
+                  <FontAwesomeIcon icon={faUser} className={`text-xl ${isActiveClassName}`} />
+                  <span className={`text-xl ${isActiveClassName} font-semibold`}>Personal</span>
                 </div>
 
                 <ul>
@@ -115,12 +119,12 @@ function Footer() {
               <div className={`w-full max-md:border-b-[1px] ${theme === 'dark' ? 'max-md:border-b-slate-600' : 'max-md:border-b-slate-400'} max-md:pb-5`}>
 
                 <div className="flex gap-x-4 mb-4">
-                  <FontAwesomeIcon icon={faLanguage} className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'}`} />
-                  <span className={`${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} text-xl font-semibold`}>Language</span>
+                  <FontAwesomeIcon icon={faLanguage} className={`text-xl ${isActiveClassName}`} />
+                  <span className={`${isActiveClassName} text-xl font-semibold`}>Language</span>
                 </div>
 
                 <div className="mb-4">
-                  <h1 className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} font-semibold underline`}>Frontend</h1>
+                  <h1 className={`text-xl ${isActiveClassName} font-semibold underline`}>Frontend</h1>
                 </div>
 
                 <ul className="pl-5">
@@ -130,7 +134,7 @@ function Footer() {
                 </ul>
 
                 <div className="mb-4">
-                  <h1 className={`${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} text-xl font-semibold underline`}>Backend</h1>
+                  <h1 className={`${isActiveClassName} text-xl font-semibold underline`}>Backend</h1>
                 </div>
 
                 <ul className="pl-5">
@@ -138,7 +142,7 @@ function Footer() {
                 </ul>
 
                 <div className="mb-4">
-                  <h1 className={`${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} text-xl font-semibold underline`}>Database</h1>
+                  <h1 className={`${isActiveClassName} text-xl font-semibold underline`}>Database</h1>
                 </div>
 
                 <ul className="pl-5">
@@ -146,7 +150,7 @@ function Footer() {
                 </ul>
 
                 <div className="mb-4">
-                  <h1 className={`${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} text-xl font-semibold underline`}>Design UX/UI, Tools, Testing</h1>
+                  <h1 className={`${isActiveClassName} text-xl font-semibold underline`}>Design UX/UI, Tools, Testing</h1>
                 </div>
 
                 <ul className="pl-5">
@@ -158,8 +162,8 @@ function Footer() {
               <div className={`w-full max-md:border-b-[1px] ${theme === 'dark' ? 'max-md:border-b-slate-600' : 'max-md:border-b-slate-400'} max-md:pb-5`}>
 
                 <div className="flex gap-x-4 mb-4">
-                  <FontAwesomeIcon icon={faUser} className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'}`} />
-                  <h1 className={`text-xl ${theme === 'dark' ? 'text-[#30baaa]' : 'text-[#196c62]'} font-semibold`}>Signin With Me.</h1>
+                  <FontAwesomeIcon icon={faUser} className={`text-xl ${isActiveClassName}`} />
+                  <h1 className={`text-xl ${isActiveClassName} font-semibold`}>Signin With Me.</h1>
                 </div>
 
                 <Input

@@ -9,8 +9,7 @@ import { UserThemeContext, type UserThemeContextDto } from '../router/Router';
 
 function AppBar() {
 
-    const {theme, toggleTheme}: UserThemeContextDto = useContext(UserThemeContext);
-
+    const {theme, toggleTheme} = useContext(UserThemeContext) as never as UserThemeContextDto;
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -53,7 +52,7 @@ function AppBar() {
                             <Image isSrc={true} src={'https://ecommerce-platforms.com/wp-content/uploads/2021/11/hero-2.png'} className='w-full h-full object-cover animation-image' />
                         </div>
                         {
-                            resize > 920 ? <span className='ml-5 text-3xl title-appbar'>E-commerce</span> : ''
+                            resize > 920 && <span className='ml-5 text-3xl title-appbar'>E-commerce</span>
                         }
                     </div>
                     <ul className="flex gap-x-5">

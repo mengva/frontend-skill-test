@@ -17,6 +17,48 @@
     scroll-behavior: smooth;
 }
 
+:root {
+    --pink: #cf3bed;
+    --hover-pink: #b535cf;
+    --green: #289157;
+    --hover-green: #2e935c;
+    --cyan: #196c62;
+    --cyan1: #25b09b;
+    --blue: #1e639f;
+    --hover-blue: #3888cf;
+}
+
+/* color */
+.primary-color {
+    color: var(--pink);
+    opacity: 1;
+}
+
+.hover-primary-color {
+    color: var(--hover-pink);
+    opacity: 1;
+}
+
+.success-color {
+    color: var(--green);
+    opacity: 1;
+}
+
+.hover-success-color {
+    color: var(--hover-green);
+    opacity: 1;
+}
+
+.info-color {
+    color: var(--blue);
+    opacity: 1;
+}
+
+.hover-info-color {
+    color: var(--hover-blue);
+    opacity: 1;
+}
+
 .animation-image {
     animation: animateImage 5s linear infinite;
 }
@@ -39,13 +81,12 @@
     }
 }
 
-/* HTML: <div class="loader"></div> */
 .loader {
     width: 50px;
     padding: 8px;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: #25b09b;
+    background: var(--cyan1);
     --_m:
         conic-gradient(#0000 10%, #000),
         linear-gradient(#000 0 0) content-box;
@@ -66,7 +107,7 @@
     position: relative;
     text-transform: capitalize;
     color: transparent;
-    background: linear-gradient(45deg, #111a36, #cf3bed);
+    background: linear-gradient(45deg, #111a36, var(--pink));
     background-clip: text;
     font-weight: 600;
     overflow: hidden;
@@ -78,9 +119,9 @@
     width: 100%;
     height: 100%;
     inset: 0;
-    background-color: #196c62;
+    background-color: var(--cyan);
     animation: animateTitle 5s linear infinite;
-    border-left: 2px solid #cf3bed;
+    border-left: 2px solid var(--pink);
 }
 
 @keyframes animateTitle {
@@ -144,26 +185,27 @@
 }
 
 @keyframes imageAnimate {
-    0%{
+    0% {
         transform: translateY(0px);
     }
 
-    25%{
+    25% {
         transform: translateY(-10px);
     }
 
-    50%{
+    50% {
         transform: translateY(10px);
     }
 
-    75%, 100%{
+    75%,
+    100% {
         transform: translateY(0px);
     }
-    
+
 }
 
 .input-checkbox:checked {
-    background-color: #cf3bed !important;
+    background-color: var(--pink) !important;
 }
 
 .input-checkbox:checked+label {
