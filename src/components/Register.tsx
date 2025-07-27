@@ -7,7 +7,7 @@ import DialogCongratulation from './DialogCongratulation';
 import { UserThemeContext } from '../router/Router';
 
 function Signup() {
-        
+
     const { theme } = useContext(UserThemeContext) as never;
 
     const [userName, setUserName] = useState('');
@@ -94,14 +94,14 @@ function Signup() {
         setIsSubmitError(!isSuccess);
         setIsSubmitSuccess(isSuccess);
 
-        if(!isSuccess) return;
+        if (isSuccess) {
+            const clear = setTimeout(() => {
+                setIsSubmitError(false);
+                setIsSubmitSuccess(false);
+            }, 50);
 
-        const clear = setTimeout(() => {
-            setIsSubmitError(false);
-            setIsSubmitSuccess(false);
-        }, 50);
-
-        return () => clearTimeout(clear);
+            return () => clearTimeout(clear);
+        }
     }
 
     useEffect(() => {
@@ -202,7 +202,7 @@ function Signup() {
             {
 
                 isCongratulation &&
-                    <DialogCongratulation title={'Congratulation?'} setIsCongratulation={() => setIsCongratulation(prev => !prev)} icon={faCheck} iconClassName={`text-[50px] text-center mx-auto text-[#cf3bed]`} />
+                <DialogCongratulation title={'Congratulation?'} setIsCongratulation={() => setIsCongratulation(prev => !prev)} icon={faCheck} iconClassName={`text-[50px] text-center mx-auto text-[#cf3bed]`} />
             }
         </>
     )

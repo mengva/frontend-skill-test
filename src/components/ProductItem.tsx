@@ -46,7 +46,7 @@ function ProductItem({ product }: ProductItemDto) {
                     <Image isSrc={true} className={"w-full h-full object-cover object-center"} src={product["images"][0]} />
                 </div>
                 <div className="p-5">
-                    <div className={`${theme === 'dark' ? 'text-slate-300' : 'text-slate-800'} text-lg mb-1`}>{product['title']}</div>
+                    <div className={`${theme === 'dark' ? 'text-slate-300' : 'text-slate-800'} text-lg mb-1 line-clamp-1`}>{product['title']}</div>
                     <div className="text-[#cf3bed] text-lg mb-1">${product['price']}</div>
                     <div className="flex justify-between items-center">
                         <div className={`${theme === 'dark' ? 'text-slate-300' : 'text-slate-600'} text-md`}>stock: {product['stock']}</div>

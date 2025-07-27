@@ -35,30 +35,23 @@ function Input({ className, isSubmitError, isSubmitSuccess, type, value, name, r
 
         setInputValue(event.target?.value?.toLowerCase());
 
-        if(type === "text"){
-            if (value?.current.length < 2) {
-                setMessage(`${name} must be greater than 2 character`);
-                handlerSetIsErrorAndIsSuccess(false);
-                return;
-            }
+        if (!value?.current) {
+            setMessage(`${name} is required`);
+            handlerSetIsErrorAndIsSuccess(false);
+            return;
         }
 
         if (type === "password") {
             if (value?.current.length < 6) {
-                setMessage(`${name} must be greater than 6 character`);
+                setMessage(`password must be greater than 6 character`);
                 handlerSetIsErrorAndIsSuccess(false);
                 return;
             }
         }
 
         if (type === "email") {
-            if (!value?.current) {
-                setMessage(`email is required`);
-                handlerSetIsErrorAndIsSuccess(false);
-                return;
-            }
             if (!emailFormatter.test(value?.current)) {
-                setMessage(`${name} invalid format`);
+                setMessage(`email invalid format`);
                 handlerSetIsErrorAndIsSuccess(false);
                 return;
             }
@@ -67,8 +60,8 @@ function Input({ className, isSubmitError, isSubmitSuccess, type, value, name, r
             return;
         }
 
-        if (!value?.current) {
-            setMessage(`${name} is required`);
+        if (value?.current.length < 2) {
+            setMessage(`${name} must be greater than 2 character`);
             handlerSetIsErrorAndIsSuccess(false);
             return;
         }
@@ -78,7 +71,7 @@ function Input({ className, isSubmitError, isSubmitSuccess, type, value, name, r
     }
 
     useEffect(() => {
-        if(isSubmitSuccess){
+        if (isSubmitSuccess) {
             setIsSuccess(false);
             setIsError(false);
             setMessage("");
@@ -87,7 +80,7 @@ function Input({ className, isSubmitError, isSubmitSuccess, type, value, name, r
             setIsError(isSubmitError);
             setIsSuccess(false);
             setMessage(`${name} is required`);
-        }else{
+        } else {
             setIsError(isSubmitError);
             setIsSuccess(false);
             setMessage('');

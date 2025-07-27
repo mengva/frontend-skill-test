@@ -23,9 +23,7 @@ function AppBar() {
     const [resize, setResize] = useState(window.innerWidth);
 
     function handlerResize() {
-        window.addEventListener("resize", () => {
-            setResize(window.innerWidth);
-        });
+        setResize(window.innerWidth);
     }    
     
     const handlerIsUserAuth = () => {
